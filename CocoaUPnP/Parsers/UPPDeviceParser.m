@@ -64,6 +64,10 @@
         } else if ([deviceType rangeOfString:@":MediaServer:"].location != NSNotFound) {
             device = [UPPMediaServerDevice mediaServerWithURN:deviceType
                                                       baseURL:baseURL];
+        } else if ([deviceType rangeOfString:@":Belkin:device:controllee:"].location != NSNotFound) {
+            device = [UPPBasicDevice new];
+            device.deviceType = deviceType;
+            device.baseURL = baseURL;
         }
 
         if (!device) {
